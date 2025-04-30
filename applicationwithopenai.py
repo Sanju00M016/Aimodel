@@ -7,6 +7,9 @@ from summarize_module import Summarizer
 from keywords_module import KeywordExtractor
 from text_generation_module import TextGenerator
 from t5_fine_tuning_module import T5TextGenerator
+import threading
+import gradio as gr
+from frontend import demo
 
 app = Flask(__name__)
 qa_model = QAModule()
@@ -115,5 +118,13 @@ def generate_t5_route():
         logging.error("Generate_t5 request missing input")
         return jsonify({'error': 'Missing input'}), 400
 
+
+# Function to launch Gradio in a separate thread
+def launch_gradio():
+    demo.launch(share=False, inbrowser=True)  # Optional: `share=True` for public link
+
+# Start Gradio in a separate thread so it doesn't block Flask
+threading.Thread(target=launch_gradio).start()
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)
