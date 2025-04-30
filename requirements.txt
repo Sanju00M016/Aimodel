@@ -6,3 +6,6 @@ datasets
 scikit-learn
 sentencepiece
 accelerate
+flask
+requests
+jsonify
