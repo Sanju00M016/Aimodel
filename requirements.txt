@@ -1,0 +1,8 @@
+openai
+transformers
+torch
+gradio
+datasets
+scikit-learn
+sentencepiece
+accelerate
