@@ -56,8 +56,8 @@ def generate_question(topic):
 #     else:
 #         return f"Error: {response.status_code} - {response.text}"
 
-# with gr.Blocks() as demo:
-#     gr.Markdown("# EDUASSIST")
+with gr.Blocks() as demo:
+    gr.Markdown("# EDUASSIST")
 
     with gr.Tab("Question Answering"):
         question_input = gr.Textbox(label="Question")
