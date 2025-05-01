@@ -6,7 +6,7 @@ from qa_module import QAModule
 from summarize_module import Summarizer
 from keywords_module import KeywordExtractor
 from text_generation_module import TextGenerator
-from t5_fine_tuning_module import T5TextGenerator
+#from t5_fine_tuning_module import T5TextGenerator
 import threading
 import gradio as gr
 from frontend import demo
@@ -98,25 +98,25 @@ def generate_question_route():
         logging.error("Generate question request missing topic")
         return jsonify({'error': 'Missing topic'}), 400
     
-@app.route('/generate_t5', methods=['POST'])  # New route for T5
-def generate_t5_route():
-    start_time = time.time()
-    data = request.get_json()
-    input_text = data.get('input')
-    logging.info(f"Received generate_t5 request: Input='{input_text[:50]}...'")
+# @app.route('/generate_t5', methods=['POST'])  # New route for T5
+# def generate_t5_route():
+#     start_time = time.time()
+#     data = request.get_json()
+#     input_text = data.get('input')
+#     logging.info(f"Received generate_t5 request: Input='{input_text[:50]}...'")
 
-    if input_text:
-        try:
-            generated_text = t5_text_generator.generate_text(input_text)
-            latency = time.time() - start_time
-            logging.info(f"Generate_t5 response: Output='{generated_text}', Latency={latency:.4f}s")
-            return jsonify({'output': generated_text, 'latency': latency})
-        except Exception as e:
-            logging.error(f"Error during T5 generation: {e}")
-            return jsonify({'error': f'T5 Generation error: {e}'}), 500
-    else:
-        logging.error("Generate_t5 request missing input")
-        return jsonify({'error': 'Missing input'}), 400
+#     if input_text:
+#         try:
+#             generated_text = t5_text_generator.generate_text(input_text)
+#             latency = time.time() - start_time
+#             logging.info(f"Generate_t5 response: Output='{generated_text}', Latency={latency:.4f}s")
+#             return jsonify({'output': generated_text, 'latency': latency})
+#         except Exception as e:
+#             logging.error(f"Error during T5 generation: {e}")
+#             return jsonify({'error': f'T5 Generation error: {e}'}), 500
+#     else:
+#         logging.error("Generate_t5 request missing input")
+#         return jsonify({'error': 'Missing input'}), 400
 
 
 # Function to launch Gradio in a separate thread
