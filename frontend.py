@@ -47,17 +47,17 @@ def generate_question(topic):
     else:
         return f"Error: {response.status_code} - {response.text}"
 
-def generate_text_t5(input_text):
-    payload = json.dumps({"input": input_text})
-    headers = {'Content-Type': 'application/json'}
-    response = requests.post(f"{BASE_URL}/generate_t5", data=payload, headers=headers)
-    if response.ok:
-        return response.json().get("output", "Error: No output received.")
-    else:
-        return f"Error: {response.status_code} - {response.text}"
+# def generate_text_t5(input_text):
+#     payload = json.dumps({"input": input_text})
+#     headers = {'Content-Type': 'application/json'}
+#     response = requests.post(f"{BASE_URL}/generate_t5", data=payload, headers=headers)
+#     if response.ok:
+#         return response.json().get("output", "Error: No output received.")
+#     else:
+#         return f"Error: {response.status_code} - {response.text}"
 
-with gr.Blocks() as demo:
-    gr.Markdown("# EDUASSIST")
+# with gr.Blocks() as demo:
+#     gr.Markdown("# EDUASSIST")
 
     with gr.Tab("Question Answering"):
         question_input = gr.Textbox(label="Question")
@@ -84,11 +84,11 @@ with gr.Blocks() as demo:
         question_output = gr.Textbox(label="Generated Question")
         generate_button.click(generate_question, inputs=topic_input, outputs=question_output)
 
-    with gr.Tab("Cloud Computing Model"):
-        t5_input = gr.Textbox(label="Enter Text to Generate")
-        t5_generate_button = gr.Button("Generate Text (T5)")
-        t5_output = gr.Textbox(label="Generated Text (T5)")
-        t5_generate_button.click(generate_text_t5, inputs=t5_input, outputs=t5_output)
+    # with gr.Tab("Cloud Computing Model"):
+    #     t5_input = gr.Textbox(label="Enter Text to Generate")
+    #     t5_generate_button = gr.Button("Generate Text (T5)")
+    #     t5_output = gr.Textbox(label="Generated Text (T5)")
+    #     t5_generate_button.click(generate_text_t5, inputs=t5_input, outputs=t5_output)
     
 
 if __name__ == "__main__":
