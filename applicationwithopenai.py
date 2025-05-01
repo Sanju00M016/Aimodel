@@ -16,8 +16,8 @@ qa_model = QAModule()
 summarizer = Summarizer()
 keyword_extractor = KeywordExtractor()
 text_generator = TextGenerator()
-t5_generator = T5TextGenerator()
-t5_text_generator = T5TextGenerator()
+# t5_generator = T5TextGenerator()
+# t5_text_generator = T5TextGenerator()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
